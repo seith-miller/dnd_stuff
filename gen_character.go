@@ -18,7 +18,7 @@ type abilityies struct {
 
 func rollDice(d int) int {
 	rand.Seed(time.Now().UnixNano())
-	randomNum := random(1, d)
+	randomNum := random(1, d+1)
 	return randomNum
 }
 
