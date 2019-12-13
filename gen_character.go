@@ -46,6 +46,16 @@ func genAbilitiesDwarf() abilities {
 	return a
 }
 
+func genAbilitiesElf() abilities {
+	a := abilities{twoDSix(), 13, twoDSix(), 13, twoDSix(), twoDSix()}
+	return a
+}
+
+func genAbilitiesHalf() abilities {
+	a := abilities{twoDSix(), twoDSix(), twoDSix(), twoDSix(), 13, 13}
+	return a
+}
+
 func findMod(i int) float64 {
 	id := float64(i) / 2
 	idf := math.Floor(id)
@@ -61,11 +71,7 @@ func printAbilities(name string, ab int, mod float64) {
 	fmt.Println("")
 }
 
-func main() {
-	fmt.Println("### Here is your new Human Character! ###")
-
-	a := genAbilitiesHuman()
-
+func printCharaHuman(a abilities) {
 	fmt.Println("over all quality")
 	aSum := a.strength + a.dexterity + a.constitution + a.intelligence + a.wisdom + a.charisma
 	fmt.Println(aSum)
@@ -78,21 +84,54 @@ func main() {
 	printAbilities("INT", a.intelligence, findMod(a.intelligence))
 	printAbilities("WIS", a.wisdom, findMod(a.wisdom))
 	printAbilities("CHA", a.charisma, findMod(a.charisma))
+}
 
-	fmt.Println("### Here is your new Dwarf Character! ###")
-
-	b := genAbilitiesDwarf()
-
+func printCharaNotHuman(a abilities) {
 	fmt.Println("over all quality")
-	bSum := b.strength + b.dexterity + b.constitution + b.intelligence + b.wisdom + b.charisma
-	fmt.Println(bSum)
-	fmt.Println(bSum - 66)
+	aSum := a.strength + a.dexterity + a.constitution + a.intelligence + a.wisdom + a.charisma
+	fmt.Println(aSum)
+	fmt.Println(aSum - 66)
 	fmt.Println("")
 
-	printAbilities("STR", b.strength, findMod(b.strength))
-	printAbilities("DEX", b.dexterity, findMod(b.dexterity))
-	printAbilities("CON", b.constitution, findMod(b.constitution))
-	printAbilities("INT", b.intelligence, findMod(b.intelligence))
-	printAbilities("WIS", b.wisdom, findMod(b.wisdom))
-	printAbilities("CHA", b.charisma, findMod(b.charisma))
+	printAbilities("STR", a.strength, findMod(a.strength))
+	printAbilities("DEX", a.dexterity, findMod(a.dexterity))
+	printAbilities("CON", a.constitution, findMod(a.constitution))
+	printAbilities("INT", a.intelligence, findMod(a.intelligence))
+	printAbilities("WIS", a.wisdom, findMod(a.wisdom))
+	printAbilities("CHA", a.charisma, findMod(a.charisma))
+}
+
+func main() {
+
+	fmt.Println("--- Hello! ---")
+	fmt.Println("I want to make a D&D character for you!")
+	fmt.Println("What race would you like to play?")
+	fmt.Println("- Human")
+	fmt.Println("- Dwarf")
+	fmt.Println("- Elf")
+	fmt.Println("- Halfling")
+
+	fmt.Print("Enter text: ")
+	var input string
+	e, _ := fmt.Scanln(&input)
+	if input == "Human" {
+		fmt.Println("### Here is your new Human Character! ###")
+
+		printCharaHuman(genAbilitiesHuman())
+	} else if input == "Dwarf" {
+		fmt.Println("### Here is your new Dwarf Character! ###")
+
+		printCharaNotHuman(genAbilitiesDwarf())
+	} else if input == "Elf" {
+		fmt.Println("### Here is your new Elf Character! ###")
+
+		printCharaNotHuman(genAbilitiesElf())
+	} else if input == "Halfing" {
+		fmt.Println("### Here is your new Halfing Character! ###")
+
+		printCharaNotHuman(genAbilitiesHalf())
+	} else {
+		fmt.Println("no!")
+		fmt.Println(e)
+	}
 }
