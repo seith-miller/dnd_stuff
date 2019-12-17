@@ -126,7 +126,7 @@ func main() {
 		fmt.Println("### Here is your new Elf Character! ###")
 
 		printCharaNotHuman(genAbilitiesElf())
-	} else if input == "Halfing" {
+	} else if input == "Halfling" {
 		fmt.Println("### Here is your new Halfing Character! ###")
 
 		printCharaNotHuman(genAbilitiesHalf())
@@ -134,4 +134,9 @@ func main() {
 		fmt.Println("no!")
 		fmt.Println(e)
 	}
+
+	fmt.Println("this is a test!")
+	fmt.Println(time.Now().UnixNano())
+	//1576540296421577692
+	//1576540312818252547
 }
